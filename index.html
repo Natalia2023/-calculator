@@ -2,28 +2,29 @@
 <html>
   <head>
     <title>Calculator</title>
-    <link rel="stylesheet" type="text/css" href="./styles.css">
+    <link rel="stylesheet" href="./styles.css">
   </head>
   <body>
     <h1>Calculator</h1>
-    <input type="text" id="result" readonly><br><br>
-    <button onclick="addNumber(7)">7</button>
-    <button onclick="addNumber(8)">8</button>
-    <button onclick="addNumber(9)">9</button>
-    <button onclick="addOperator('+')">+</button><br><br>
-    <button onclick="addNumber(4)">4</button>
-    <button onclick="addNumber(5)">5</button>
-    <button onclick="addNumber(6)">6</button>
-    <button onclick="addOperator('-')">-</button><br><br>
-    <button onclick="addNumber(1)">1</button>
-    <button onclick="addNumber(2)">2</button>
-    <button onclick="addNumber(3)">3</button>
-    <button onclick="addOperator('*')">*</button><br><br>
-    <button onclick="addNumber(0)">0</button>
-    <button onclick="addOperator('/')">/</button>
-    <button onclick="clearResult()">C</button>
-    <button onclick="calculate()">=</button>
+    <input type="text" id="result" class="result" readonly><br><br>
+    <button onclick="addNumber(7)" class="button">7</button>
+    <button onclick="addNumber(8)" class="button">8</button>
+    <button onclick="addNumber(9)" class="button">9</button>
+    <button onclick="addOperator('+')" class="button operator">+</button><br><br>
+    <button onclick="addNumber(4)" class="button">4</button>
+    <button onclick="addNumber(5)" class="button">5</button>
+    <button onclick="addNumber(6)" class="button">6</button>
+    <button onclick="addOperator('-')" class="button operator">-</button><br><br>
+    <button onclick="addNumber(1)" class="button">1</button>
+    <button onclick="addNumber(2)" class="button">2</button>
+    <button onclick="addNumber(3)" class="button">3</button>
+    <button onclick="addOperator('*')" class="button operator">*</button><br><br>
+    <button onclick="addNumber(0)" class="button">0</button>
+    <button onclick="addOperator('/')" class="button operator">/</button>
+    <button onclick="clearResult()" class="button clear">C</button>
+    <button onclick="calculate()" class="button equal">=</button>
     <script src="./calculator.js"></script>
   </body>
 </html>
 
+  
