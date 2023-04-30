@@ -1,47 +1,75 @@
-// Отримання елементів DOM
+// знаходження потрібних елементів DOM
 const result = document.getElementById('result');
-const buttons = document.querySelectorAll('.button');
 const operators = document.querySelectorAll('.operator');
-const clearButton = document.querySelector('.clear');
-const equalButton = document.querySelector('.equal');
+const numbers = document.querySelectorAll('.buttons button:not(.operator)');
+const equal = document.querySelector('.buttons button:last-child');
+const clear = document.querySelector('.buttons button:nth-child(4)');
 
-// Функція, яка додає цифри до введеного значення
-function addNumber(number) {
-  result.value += number;
-}
+// змінні для зберігання значень
+let currentNumber = '';
+let firstNumber = '';
+let operator = '';
 
-// Функція, яка додає оператори до введеного значення
-function addOperator(operator) {
-  result.value += operator;
-}
-
-// Функція, яка очищує введене значення
-function clearResult() {
+// функція для введення цифр
+function numberClicked(number) {
+  currentNumber += number;
+  result.value =
+// функція для очищення поля вводу
+function clearClicked() {
+  currentNumber = '';
+  firstNumber = '';
+  operator = '';
   result.value = '';
-}
-
-// Функція, яка рахує результат
-function calculate() {
-  result.value = eval(result.value);
-}
-
-// Надання обробника подій для кожної кнопки
-buttons.forEach(function(button) {
-  button.addEventListener('click', function() {
-    addNumber(this.textContent);
+  }
+};
+  
+  // функція для вибору операції
+  function operatorClicked(op) {
+  if (currentNumber !== '') {
+  firstNumber = currentNumber;
+  operator = op;
+  currentNumber = '';
+  }
+  }
+  
+  // функція для обчислення результату
+  function calculateResult() {
+  let finalResult = '';
+  if (operator === '+') {
+  finalResult = parseFloat(firstNumber) + parseFloat(currentNumber);
+  } else if (operator === '-') {
+  finalResult = parseFloat(firstNumber) - parseFloat(currentNumber);
+  } else if (operator === '*') {
+  finalResult = parseFloat(firstNumber) * parseFloat(currentNumber);
+  } else if (operator === '/') {
+  finalResult = parseFloat(firstNumber) / parseFloat(currentNumber);
+  }
+  result.value = finalResult;
+  firstNumber = finalResult;
+  currentNumber = '';
+  operator = '';
+  }
+  
+  // додавання обробників подій
+  numbers.forEach((button) => {
+  button.addEventListener('click', () => {
+  numberClicked(button.textContent);
   });
-});
-
-operators.forEach(function(operator) {
-  operator.addEventListener('click', function() {
-    addOperator(this.textContent);
   });
-});
+  
+  operators.forEach((button) => {
+  button.addEventListener('click', () => {
+  operatorClicked(button.textContent);
+  });
+  });
+  
+  equal.addEventListener('click', calculateResult);
+  clear.addEventListener('click', clearClicked);
+  
 
-clearButton.addEventListener('click', function() {
-  clearResult();
-});
-
-equalButton.addEventListener('click', function() {
-  calculate();
-});
+  
+  
+  
+  
+  
+  
