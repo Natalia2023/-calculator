@@ -9,9 +9,11 @@ const hoverHandler = (e) => {
   console.log("e.target", e.target);
   const { target: button } = e; 
   // задаємо рандомні, тобто випадкові координати кнопкам по ширині та висоті вінодов
-  button.style.top = `${Math.floor(Math.random() * window.innerHeight)}px`;
-  button.style.left = `${Math.floor(Math.random() * window.innerWidth)}px`;
- console.log(window);
+  button.style.top = `${Math.floor(Math.random() * window.innerHeight - button.clientHeight)}px`;
+  button.style.left = `${Math.floor(Math.random() * window.innerWidth - button.clientWidth)}px`;
+//код нижчи закоментований дає змогу подивитися на розмір кнопки 
+  //  console.log("button.clientHeight", button.clientHeight);
+//  console.log("button.clientWidth", button.clientWidth);
 };
   
 
