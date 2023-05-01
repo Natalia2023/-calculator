@@ -1,75 +1,27 @@
-// знаходження потрібних елементів DOM
-const result = document.getElementById('result');
-const operators = document.querySelectorAll('.operator');
-const numbers = document.querySelectorAll('.buttons button:not(.operator)');
-const equal = document.querySelector('.buttons button:last-child');
-const clear = document.querySelector('.buttons button:nth-child(4)');
-
-// змінні для зберігання значень
-let currentNumber = '';
-let firstNumber = '';
-let operator = '';
-
-// функція для введення цифр
-function numberClicked(number) {
-  currentNumber += number;
-  result.value =
-// функція для очищення поля вводу
-function clearClicked() {
-  currentNumber = '';
-  firstNumber = '';
-  operator = '';
-  result.value = '';
-  }
+// 1.Опрацювати анолог ховера через JSON;
+// 2.Змінити координати кнопки
+// 3.Змінити координати рандомно
+// 4.Кнопки не мають виходити за межі екрану
+// 5.Використати делегування подій
+const conteiner = document.querySelector('.container');
+const hoverHandler = (e) => {
+  // достукалися до кнопок через e.target та деструкторизацію
+  console.log("e.target", e.target);
+  const { target: button } = e; 
+  // задаємо рандомні, тобто випадкові координати кнопкам по ширині та висоті вінодов
+  button.style.top = `${Math.floor(Math.random() * window.innerHeight)}px`;
+  button.style.left = `${Math.floor(Math.random() * window.innerWidth)}px`;
+ console.log(window);
 };
   
-  // функція для вибору операції
-  function operatorClicked(op) {
-  if (currentNumber !== '') {
-  firstNumber = currentNumber;
-  operator = op;
-  currentNumber = '';
-  }
-  }
-  
-  // функція для обчислення результату
-  function calculateResult() {
-  let finalResult = '';
-  if (operator === '+') {
-  finalResult = parseFloat(firstNumber) + parseFloat(currentNumber);
-  } else if (operator === '-') {
-  finalResult = parseFloat(firstNumber) - parseFloat(currentNumber);
-  } else if (operator === '*') {
-  finalResult = parseFloat(firstNumber) * parseFloat(currentNumber);
-  } else if (operator === '/') {
-  finalResult = parseFloat(firstNumber) / parseFloat(currentNumber);
-  }
-  result.value = finalResult;
-  firstNumber = finalResult;
-  currentNumber = '';
-  operator = '';
-  }
-  
-  // додавання обробників подій
-  numbers.forEach((button) => {
-  button.addEventListener('click', () => {
-  numberClicked(button.textContent);
-  });
-  });
-  
-  operators.forEach((button) => {
-  button.addEventListener('click', () => {
-  operatorClicked(button.textContent);
-  });
-  });
-  
-  equal.addEventListener('click', calculateResult);
-  clear.addEventListener('click', clearClicked);
-  
 
-  
-  
-  
+
+
+  // якщо нам потрібно навішати обробник подій на 5 елементів в контейнері
+  // то вішаємо обробник на сам контейнер
+  // mouseover подія аналог ховера(спрацьовую при наведенні)
+ 
+  conteiner.addEventListener('mouseover',hoverHandler);
   
   
   
